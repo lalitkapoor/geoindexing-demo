@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!--<script src="http://www.google.com/jsapi" type="text/javascript"></script>-->
+		<!--<script type="text/javascript">
+			google.load("jquery", "1.4.2");
+		</script>-->
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/nowjs/now.js"></script>
+		<script src="sencha/jqtouch/jqtouch.js" type="application/x-javascript"></script>
+		<!--<script src="js/maps.js" type="application/x-javascript"></script>-->
+		<script src="http://maps.google.com/maps?file=api&v=2&sensor=true&key=ABQIAAAAk9h3SuouSUwetLBFCjFtrhQ0qiatXSb9ypSqZ9gvVle-IeNWTRTlbKx6EHmO8VureqSwGPuoRs8zWw" type="text/javascript"></script>
+		<script src="js/master.js" type="text/javascript"></script>
+		<style type="text/css" media="screen">
+			@import "sencha/jqtouch/jqtouch.css";
+			@import "sencha/themes/artspot2/theme.css";
+		</style>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		<div id="jqt">
+			<div id="page1">
+				<div class="toolbar">
+					<a href="#page2" class="button rightButton slide">Register</a>
+					<h1>Login</h1>
+				</div>
+				<form>
+					<ul class="form">
+						<li><input id="email" name="email" type="text" placeholder="Email" /></li>
+						<li><input id="password" name="password" type="password" placeholder="Password" /></li>
+					</ul>
+					<a href="#page3" style="margin: 10px;" class="whiteButton">Login</a>
+				</form>
+			</div>
+			<div id="page2">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<h1>Register</h1>
+				</div>
+				<form>
+					<ul class="form">
+						<li><input id="email" name="email" type="text" placeholder="Email" /></li>
+						<li><input id="email" name="password" type="password" placeholder="Password" /></li>
+						<li><input id="email" name="repass" type="password" placeholder="Password Again" /></li>
+					</ul>
+					<a href="#page3" style="margin: 10px;" class="whiteButton">Register</a>
+				</form>
+			</div>
+			<div id="page3">
+				<div class="toolbar">
+					<a href="#" class="button leftButton slide">Settings</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1>Pulse</h1>
+				</div>
+				<h2>You Are Here</h2>
+				<div class="notransform" style="text-align:center;"><div id="map" class="notransform"></div></div>
+				<h2>Hospitals</h2>
+				<ul id="hospitals" class="rounded"></ul>
+			</div>
+			<div id="directions">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1>Hospital</h1>
+				</div>
+				<h2 style='text-align: center;'></h2>
+				<div class="notransform" style="text-align:center;"><div id="directionmap" class="notransform"></div></div>
+			</div>
+			<div id="hospital0">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1 id="title0">Hospital</h1>
+				</div>
+				<h2>Info</h2>
+				<ul class="rounded">
+					<li id="name0">Hospital Name</li>
+					<li id="address0">Hospital Address</li>
+					<li id="phone0" class="arrow">Hospital Phone Number</li>
+				</ul>
+				<h2>Actions</h2>
+				<ul class="rounded">
+					<li id="directions0" class="arrow">Get Directions</li>
+					<li id="notify0">Notify Contacts</li>
+				</ul>
+			</div>
+			<div id="hospital1">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1 id="title1">Hospital</h1>
+				</div>
+				<h2>Info</h2>
+				<ul class="rounded">
+					<li id="name1">Hospital Name</li>
+					<li id="address1">Hospital Address</li>
+					<li id="phone1" class="arrow">Hospital Phone Number</li>
+				</ul>
+				<h2>Actions</h2>
+				<ul class="rounded">
+					<li id="directions1" class="arrow">Get Directions</li>
+					<li id="notify1">Notify Contacts</li>
+				</ul>
+			</div>
+			<div id="hospital2">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1 id="title2">Hospital</h1>
+				</div>
+				<h2>Info</h2>
+				<ul class="rounded">
+					<li id="name2">Hospital Name</li>
+					<li id="address2">Hospital Address</li>
+					<li id="phone2" class="arrow">Hospital Phone Number</li>
+				</ul>
+				<h2>Actions</h2>
+				<ul class="rounded">
+					<li id="directions2" class="arrow">Get Directions</li>
+					<li id="notify2">Notify Contacts</li>
+				</ul>
+			</div>
+			<div id="hospital3">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1 id="title3">Hospital</h1>
+				</div>
+				<h2>Info</h2>
+				<ul class="rounded">
+					<li id="name3">Hospital Name</li>
+					<li id="address3">Hospital Address</li>
+					<li id="phone3" class="arrow">Hospital Phone Number</li>
+				</ul>
+				<h2>Actions</h2>
+				<ul class="rounded">
+					<li id="directions3" class="arrow">Get Directions</li>
+					<li id="notify3">Notify Contacts</li>
+				</ul>
+			</div>
+			<div id="hospital4">
+				<div class="toolbar">
+					<a href="#" class="back">Back</a>
+					<a href="#" class="button rightButton slide">Call 911</a>
+					<h1 id="title4">Hospital</h1>
+				</div>
+				<h2>Info</h2>
+				<ul class="rounded">
+					<li id="name4">Hospital Name</li>
+					<li id="address4">Hospital Address</li>
+					<li id="phone4" class="arrow">Hospital Phone Number</li>
+				</ul>
+				<h2>Actions</h2>
+				<ul class="rounded">
+					<li id="directions4" class="arrow">Get Directions</li>
+					<li id="notify4">Notify Contacts</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

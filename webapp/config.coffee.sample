@@ -1,0 +1,17 @@
+
+exports.mongo = {
+	host: '127.0.0.1'
+	port: 1212
+	db: {mongodc:'mongodc'}
+}
+
+exports.voice = {
+	email: 'YOUR_EMAIL@gmail.com'
+	password: 'PASSWORD'
+	rnr_se: 'GET_FROM_URL_GOOGLE_IT'
+}
+
+exports.sms = {
+	username: 'YOUR_USERNAME'
+	password: 'YOUR_PASSWORD'
+}

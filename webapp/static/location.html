@@ -1,0 +1,133 @@
+<html>
+<head>
+<script type="text/javascript" src="/nowjs/now.js"></script>
+<!--<script src="http://www.google.com/jsapi" type="text/javascript"></script>-->
+<!--<script type="text/javascript">
+	google.load("jquery", "1.4.2");
+</script>-->
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script src="sencha/jqtouch/jqtouch.js" type="application/x-javascript"></script>
+<!--<script src="http://maps.google.com/maps?file=api&v=2&sensor=true&key=ABQIAAAAk9h3SuouSUwetLBFCjFtrhQ0qiatXSb9ypSqZ9gvVle-IeNWTRTlbKx6EHmO8VureqSwGPuoRs8zWw" type="text/javascript"></script> -->
+<script src="js/maps.js" type="application/x-javascript"></script>
+<script type="text/javascript">
+    var map;
+   var gdir;
+   var geocoder = null;
+   var addressMarker;
+
+   function initialize() {
+     if (GBrowserIsCompatible()) {      
+       map = new GMap2(document.getElementById("map_canvas"));
+       gdir = new GDirections(map, document.getElementById("directions"));
+       GEvent.addListener(gdir, "addoverlay", onGDirectionsLoad);
+       GEvent.addListener(gdir, "error", handleErrors);
+
+       //setDirections("Palo Alto", "Mountain View", "en_US");
+     }
+   }
+   
+   function setDirections(fromAddress, toAddress, locale) {
+     gdir.load("from: " + fromAddress + " to: " + toAddress,
+               { "locale": locale });
+   }
+
+   function handleErrors(){
+  if (gdir.getStatus().code == G_GEO_UNKNOWN_ADDRESS)
+    alert("No corresponding geographic location could be found for one of the specified addresses. This may be due to the fact that the address is relatively new, or it may be incorrect.\nError code: " + gdir.getStatus().code);
+  else if (gdir.getStatus().code == G_GEO_SERVER_ERROR)
+    alert("A geocoding or directions request could not be successfully processed, yet the exact reason for the failure is not known.\n Error code: " + gdir.getStatus().code);
+  else if (gdir.getStatus().code == G_GEO_MISSING_QUERY)
+    alert("The HTTP q parameter was either missing or had no value. For geocoder requests, this means that an empty address was specified as input. For directions requests, this means that no query was specified in the input.\n Error code: " + gdir.getStatus().code);
+  else if (gdir.getStatus().code == G_GEO_BAD_KEY)
+    alert("The given key is either invalid or does not match the domain for which it was given. \n Error code: " + gdir.getStatus().code);
+  else if (gdir.getStatus().code == G_GEO_BAD_REQUEST)
+    alert("A directions request could not be successfully parsed.\n Error code: " + gdir.getStatus().code);
+  else alert("An unknown error occurred.");
+   }
+
+ function onGDirectionsLoad(){ 
+  var poly = gdir.getPolyline();
+  if (poly.getVertexCount() > 100) {
+    alert("This route has too many vertices");
+    return;
+  }
+  var baseUrl = "http://maps.google.com/staticmap?";
+
+  var params = [];
+  var markersArray = [];
+  markersArray.push(poly.getVertex(0).toUrlValue(5) + ",greena");
+  markersArray.push(poly.getVertex(poly.getVertexCount()-1).toUrlValue(5) + ",greenb");
+  params.push("markers=" + markersArray.join("|"));
+
+  var polyParams = "rgba:0x0000FF80,weight:5|";
+  var polyLatLngs = [];
+  for (var j = 0; j < poly.getVertexCount(); j++) {
+    polyLatLngs.push(poly.getVertex(j).lat().toFixed(5) + "," + poly.getVertex(j).lng().toFixed(5));
+  }
+  params.push("path=" + polyParams + polyLatLngs.join("|"));
+  params.push("size=300x300");
+  params.push("key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxSPW5CJgpdgO_s4yyMovOaVh_KvvhSfpvagV18eOyDWu7VytS6Bi1CWxw");
+
+  baseUrl += params.join("&");
+}
+
+function addImg(url, id) {
+ var img = document.createElement("img");
+ img.src = url;
+ document.getElementById(id).innerHTML = "";
+ document.getElementById(id).appendChild(img);
+}
+
+</script>
+
+<script type="text/javascript">
+gAddress = null;
+now.getLocation = function(lat, lng){
+	$("#directions").html("");
+	console.log(lat);
+	console.log(lng);
+	if(gAddress != null){
+		setDirections(lat+","+lng, gAddress, "en_US");
+	}
+	//var map = document.getElementById("map");
+//	map.innerHTML ="<img src='http://maps.google.com/maps/api/staticmap?center="+lat+","+lng+"&zoom=15&size=300x300&markers=color:blue|label:S|"+lat+","+lng+"&sensor=true'/>"
+}
+
+now.getData = function(lat, lng, doc){
+	$("#directions").html("");
+	console.log(doc);
+	gAddress = doc.loc[0]+","+doc.loc[1];
+	$("#name").html(doc.name);
+	$("#address1").html(doc.address1);
+	$("#address2").html(doc.city+", "+doc.state+" "+doc.zip);
+	$("#phone").html(doc.phone);
+	$("#phone").attr('href', "tel:1"+doc.phone);
+	setDirections(lat+","+lng, gAddress, "en_US");
+	console.log(this);
+	
+}
+  now.ready(function(){
+	$(document).ready(function(){
+		initialize();
+	});
+});
+</script>
+
+</head>
+<body>
+	<h1>Pulse App</h1>
+	<div class="notransform" style="text-align:left;">
+		<div><b>Lalit's current location is shown on the map and updated in realtime</b></div>
+		<div id="map_canvas" style="height: 400px"></div>
+	</div>
+	<br /><br />
+	<div style="text-align:left;">
+		<div><b>Lalit is heading to the following location:</b></div>
+		<div id="name"></div>
+		<div id="address1"></div>
+		<div id="address2"></div>
+		<div><a href="tel:" id="phone"></a></div>
+	</div>
+	<div id='directions'></div>
+</body>
+</html>

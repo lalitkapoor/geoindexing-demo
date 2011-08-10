@@ -1,0 +1,31 @@
+{
+	"name": "pulseapp",
+	"description": "Pulse App",
+	"version": "0.0.1",
+	"homepage": "http://www.github.com/lalitkapoor/pulse",
+	"author": "Lalit Kapoor",
+	"contributors": [
+		"Lalit Kapoor <lalit@goodybag.com>"
+	],
+	"private": true,
+	"dependencies": {
+		"connect": "1.4.2",
+		"connect-auth": "0.2.2",
+		"connect-mongo": "0.1.2",
+		"express": "2.3.10",
+		"jade": "0.12.0",
+		"log4js": "0.2.5",
+		"mongodb": "0.9.6",
+		"mongoose": "1.4.0",
+		"mongoose-types": "1.0.3",
+		"oauth": "0.9.0",
+		"socket.io": "0.6.18",
+		"stylus": "0.13.3",
+		"google-voice": "0.0.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "http://www.github.com/goodybag/consumerweb.git"
+	},
+	"engines": { "node": ">= 0.4.8" }
+}
