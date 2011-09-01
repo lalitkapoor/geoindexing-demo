@@ -2,7 +2,7 @@
 	"name": "pulseapp",
 	"description": "Pulse App",
 	"version": "0.0.1",
-	"homepage": "http://www.github.com/lalitkapoor/pulse",
+	"homepage": "https://github.com/lalitkapoor/geoindexing-demo",
 	"author": "Lalit Kapoor",
 	"contributors": [
 		"Lalit Kapoor <lalit@goodybag.com>"
@@ -25,7 +25,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "http://www.github.com/goodybag/consumerweb.git"
+		"url": "https://github.com/lalitkapoor/geoindexing-demo"
 	},
 	"engines": { "node": ">= 0.4.8" }
 }
